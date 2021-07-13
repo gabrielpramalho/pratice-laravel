@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Event;
+use App\Models\User;
 
 class EventController extends Controller
 {
@@ -15,7 +16,7 @@ class EventController extends Controller
         if($search){
 
             $events = Event::where([
-                ['tittle', 'like', '%'.$search.'%']
+                ['title', 'like', '%'.$search.'%']
             ])->get();
 
         }else{
@@ -34,7 +35,7 @@ class EventController extends Controller
 
         $event = new Event;
 
-        $event->tittle = $request->tittle;
+        $event->title = $request->title;
         $event->date = $request->date;
         $event->city = $request->city;
         $event->private = $request->private;
@@ -69,8 +70,19 @@ class EventController extends Controller
 
         $event = Event::findOrFail($id);
 
-        return view('events.show', ['event' => $event]);
+        $eventOwner = User::where('id', $event->user_id)->first()->toArray();
 
+        return view('events.show', ['event' => $event, 'eventOwner'=> $eventOwner]);
+
+    }
+
+    public function dashboard(){
+
+        $user = auth()->user();
+
+        $events = $user->events;
+
+        return view('events.dashboard', ['events' => $events]);
     }
 }
 

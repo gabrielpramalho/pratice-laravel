@@ -96,7 +96,7 @@ header{
     margin-bottom: 10px;
 }
 
-#events-container .subtittle{
+#events-container .subtitle{
     color: #757575;
     margin-bottom: 30px;
 }
@@ -120,7 +120,7 @@ header{
     color: rgb(173, 173, 173);
 }
 
-.card .card-tittle{
+.card .card-title{
     color: #212121;
     font-size: 20px;
     font-weight: bold;
@@ -196,6 +196,18 @@ header{
   #items-list li {
       display: flex;
   }
+
+
+/*Dashboard*/
+
+.dashboard-title-container {
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+.dashboard-title-container th{
+    width: 25%;
+}
 
 
 /*Footer List styles*/
